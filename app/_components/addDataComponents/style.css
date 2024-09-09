@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .addData {
+        @apply sm:w-[60px] w-[65px] h-[65px] sm:h-[60px] bg-indigo-300 text-[40px] flex items-center justify-center rounded-[100%] hover:cursor-pointer active:bg-indigo-400 duration-300 transition-all;
+    }
+
+    .icon {
+        @apply text-[#03001C]
+    }
+}

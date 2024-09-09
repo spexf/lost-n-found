@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .content {
+        @apply justify-center sm:w-full flex flex-col items-center ;
+    }
+    .lost-nav {
+        @apply w-full text-center h-[60px] font-medium text-[20px] flex items-center justify-around;
+    }
+
+    .addData {
+        @apply fixed bottom-5 right-5 ;
+    }
+}

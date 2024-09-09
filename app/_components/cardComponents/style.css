@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .card {
+        @apply sm:w-[327px] sm:h-[151px] bg-[#130247]/40 rounded-[5px] sm:py-[5px] sm:px-[6px] flex flex-row my-3 mx-3;
+    }
+
+    .card-images {
+        @apply sm:w-[130px] sm:h-[140px] relative rounded-[7px];
+    }
+
+    .card-body {
+        @apply sm:w-[50%];
+    }
+
+    .card-text {
+        @apply sm:w-[90%] sm:ml-3 sm:h-[29px] text-[16px] bg-[#2b0994] flex items-center px-2 rounded-[5px] my-3 font-normal
+    }
+
+    .card-type {
+        @apply sm:w-[40%] sm:ml-3 sm:h-fit sm:px-1 bg-[#2b0994] rounded-[5px] text-center;
+    }
+
+    .card-url {
+        @apply sm:text-[15px] items-end w-full italic sm:mt-[40px] text-end;
+    }
+
+}
