@@ -4,11 +4,11 @@
 
 @layer components {
     .card {
-        @apply sm:w-[327px] sm:h-[151px] bg-[#130247]/40 rounded-[5px] sm:py-[5px] sm:px-[6px] flex flex-row my-3 mx-3;
+        @apply sm:w-[327px] sm:h-[151px] bg-[#2b0994]/30 rounded-[5px] sm:py-[5px] sm:px-[6px] flex items-center flex-row my-3 mx-3;
     }
 
     .card-images {
-        @apply sm:w-[130px] sm:h-[140px] relative rounded-[7px];
+        @apply sm:w-[130px] sm:h-[130px] sm:ml-2 relative rounded-[7px];
     }
 
     .card-body {

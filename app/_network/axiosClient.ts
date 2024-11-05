@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-    baseURL: `https://api.lostnfound.net`,
+    baseURL: `http://localhost:9000/api`,
     headers: {
-        'Accept': 'applicatoin/json',
+        'Accept': 'application/json',
         "Content-Type": 'application/json'
     }
 })
@@ -13,3 +13,4 @@ const client = {
 }
 
 export default client;
+

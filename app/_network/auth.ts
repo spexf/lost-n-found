@@ -1,28 +1,44 @@
+
 import client from "./axiosClient";
 
 const {axiosClient} = client
 
 interface UserData{
-    nim: string;
     name: string;
-    username: string;
     password: string;
     email: string;
 }
 
 interface UserLogin {
-    username: string;
+    email: string;
     password: string;
 }
 
 const authLogin = async (data: UserLogin)=>{
-    axiosClient.post('/auth/login')
-    console.log(data)
+    try {
+        const res = await axiosClient.post('/auth/login',data)
+        document.cookie = `token=${res.data.user.token};path=/`
+        return {data: 'Login Success', status: res.status}
+    } catch (err){
+        return {
+            msg: err.response?.data ?? 'an error occured', 
+            status: err.response?.status ?? 500
+        }
+    }
+    
 }
 
 const register = async (data: UserData) => {
-    axiosClient.post('/auth/register')
-    console.log(data) 
+    try {
+        const res = await axiosClient.post('/auth/register',data)
+        console.log(res)
+        return res
+    } catch (err){
+        return {
+            msg: err.response.data, 
+            status: err.response.status
+        }
+    }
 }
 
 const logout = async () => {

@@ -1,0 +1,54 @@
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
+
+@layer base {
+    .content {
+        @apply flex flex-col justify-around items-center mb-5
+    }
+
+    .form {
+        @apply sm:mt-2
+    }
+
+    .selectContainer {
+        @apply mb-5
+    }
+
+    .buttonContainer {
+        @apply sm:w-[304px] flex items-center h-fit justify-between
+    }
+}
+
+@layer utilities {
+    .photo-uploads {
+        @apply flex flex-col items-center justify-center bg-[#9795A1]/20 border-gray-500 border-[3px] border-dashed rounded-[5px] sm:w-[304px] sm:h-[304px] sm:px-10 sm:py-10
+    }
+
+    .inputText {
+        @apply sm:w-[304px] sm:h-[50px] sm:px-4 rounded-[5px] sm:my-5 placeholder:text-[#fff]/50 bg-[#9795A1]/20
+    }
+
+    .inputSelect {
+        @apply sm:w-[304px] sm:h-[50px] sm:px-4 rounded-[5px] bg-[#9795A1]/20
+    }
+
+    .inputSelect option {
+        @apply text-black
+    }
+
+    .inputTextarea {
+        @apply sm:w-[304px] sm:h-[150px] sm:mb-3 bg-[#9795A1]/20 rounded-[5px] sm:px-5 sm:py-3 resize-none placeholder:text-[#fff]/50
+    }
+
+    .contactButton {
+        @apply sm:w-[100px] text-[#03001C] self-end sm:h-[45px] hover:cursor-pointer active:bg-[#a9eaa8] transition-all duration-500 bg-[#79E677] rounded-[5px] flex justify-center items-center font-medium text-[13px]
+    }
+    .reportButton {
+        @apply sm:w-[180px] text-[#fff] self-end sm:h-[45px] hover:cursor-pointer active:bg-rose-300 transition-all duration-500 bg-rose-600 rounded-[5px] flex justify-center items-center font-medium text-[13px]
+    }
+
+
+    
+}

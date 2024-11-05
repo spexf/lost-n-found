@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation'
 import { useState } from 'react';
 import './style.css'
-import Link from 'next/link'
 
 interface Routes {
     id: number;
@@ -32,6 +31,11 @@ const Navbar = () => {
         },
         {
             id:4,
+            name: 'finished',
+            path: '/finished'
+        },
+        {
+            id:5,
             name: 'my-uploads',
             path: '/my-uploads'
         },

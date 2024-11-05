@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+    .memberCard {
+        @apply sm:w-[310px] sm:h-[150px] flex justify-between sm:my-[28px]
+    }
+
+    .photo {
+        @apply relative bg-indigo-700 sm:w-[145px] sm:h-[145px] rounded-[5px] flex items-center justify-center px-2 py-2
+    }
+
+    .name {
+        letter-spacing: 3px;
+        @apply sm:w-[145px] justify-center font-medium text-center text-[20px] sm:h-[40px] bg-indigo-700 rounded-[5px] flex items-center px-2
+    }
+}

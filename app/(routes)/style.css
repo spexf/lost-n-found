@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .content {
+        @apply justify-center sm:w-full flex flex-col items-center ;
+    }
+
+    .banner {
+        @apply sm:w-[310px] sm:h-[560px] justify-start flex  sm:mb-32
+    }
+
+    .sp1 {
+        letter-spacing: 5px;
+        @apply text-[60px] sm:mt-36
+    }
+
+    .sp2 {
+        @apply text-[24px]
+    }
+
+    .text-member {
+        letter-spacing: 5px;
+        @apply text-[25px] sm:my-8
+    }
+
+    .footer {
+        @apply rounded-tl-[25px] rounded-tr-[25px] sm:w-full h-20 items-center justify-start flex text-indigo-400 mt-10 text-center bg-[#33188b] px-5
+    }
+}

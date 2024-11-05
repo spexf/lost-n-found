@@ -9,13 +9,13 @@
     }
 
     .layer-3.active {
-        @apply w-[35px]
+        @apply w-[35px];
     }
     .layer-2.active {
-        @apply w-[25px]
+        @apply w-[25px];
     }
     .layer-1.active {
-        @apply w-[29px]
+        @apply w-[29px];
     }
     
     .navbar {
@@ -23,7 +23,7 @@
     }
 
     .navbar.active {
-        @apply sm:h-[30%] sm:py-5
+        @apply sm:h-[40%] sm:py-5;
     }
 
     .navigation {
@@ -31,7 +31,7 @@
     }
 
     .current-page {
-        @apply text-indigo-200 flex sm:w-full justify-between items-center
+        @apply text-indigo-200 flex sm:w-full justify-between items-center;
     }    
 
     .navigation {

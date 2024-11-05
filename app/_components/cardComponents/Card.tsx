@@ -9,9 +9,9 @@ interface Card {
 
 const Card = (props: Card) => {
     return ( 
-        <div className="card">
+        <div className="card" data-aos="fade-right">
             <div className="card-images">
-                <Image  layout="fill" objectFit="contain" src={props.images} alt="item-image"/>
+                <Image layout="fill" className="rounded-[5px]" objectFit="contain" src={props.images} alt="item-image"/>
             </div>
             <div className="card-body">
                 <div className="card-text">
