@@ -1,7 +1,8 @@
 
 import client from "./axiosClient";
-
+import Cookies from 'js-cookie';
 const {axiosClient} = client
+import { useRouter } from 'next/router';
 
 interface UserData{
     name: string;
@@ -15,10 +16,16 @@ interface UserLogin {
 }
 
 const authLogin = async (data: UserLogin)=>{
+
     try {
         const res = await axiosClient.post('/auth/login',data)
-        document.cookie = `token=${res.data.user.token};path=/`
-        return {data: 'Login Success', status: res.status}
+        axiosClient.defaults.headers.common['Authorization'] = `Bearer ${res.data.user.token}`
+        const role = await axiosClient.post('/auth/validate')        
+        Cookies.set('token', res.data.user.token, {
+            secure: true,
+            sameSite: 'strict'
+        })
+        return {data: 'Login Success', status: res.status, role: role.data.name}
     } catch (err){
         return {
             msg: err.response?.data ?? 'an error occured', 
@@ -41,16 +48,31 @@ const register = async (data: UserData) => {
     }
 }
 
+const validateSession = async (data: string) =>{
+    try {
+        const res = await axiosClient.post('/auth/validate',data)
+        return res
+    } catch (err){
+        return err
+    }
+}
+
 const logout = async () => {
-    axiosClient.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
-    axiosClient.post('/auth/logout')
-    console.log()
+    axiosClient.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('token')}`
+    try {
+        const res = axiosClient.post('/auth/logout')
+        return res
+    } catch (err){
+        return err
+    }
+     
 }
 
 const authFunction = {
     authLogin,
     register,
-    logout
+    logout,
+    validateSession
 }
 
 export default authFunction;

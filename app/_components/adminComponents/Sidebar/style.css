@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	.sidebar {
+		@apply w-[350px] h-screen  top-0 left-0 sticky flex flex-col items-start px-10 py-16 justify-between bg-[#1A134E] font-mono font-medium text-[30px];
+	}
+}
+
+@layer components {
+	.navigation {
+		@apply w-[250px] h-[100px] flex flex-col items-start justify-around;
+	}
+
+	.navi-item {
+		@apply transition-all hover:text-[#8576FF] duration-500 cursor-pointer font-medium drop-shadow;
+	}
+	.logout {
+		@apply transition-all hover:text-[#8576FF] duration-500 cursor-pointer font-medium drop-shadow justify-self-end;
+	}
+}
+
+/* Styling untuk Toast sukses */
+.success-toast {
+	font-family: 'Poppins', monospace;
+    background: linear-gradient(45deg, #28a745, #34d058); /* Gradasi hijau */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: medium;
+}
+
+/* Styling untuk Toast gagal */
+.error-toast {
+	font-family: 'Poppins', monospace;
+    background: linear-gradient(45deg, #ff7f00, #ff5722); /* Gradasi oranye */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: medium;
+}
+

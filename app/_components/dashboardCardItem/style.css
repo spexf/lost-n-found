@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+    .card-container {
+        font-family: 'Poppins', monospace;
+        @apply bg-[#1A134E] w-[328px] h-[500px] flex-col relative drop-shadow rounded-[5px];
+    }
+}
+
+@layer components {
+    .card-image {
+        @apply w-full h-[227px] mb-6 rounded-[7px] drop-shadow-md;
+    }
+
+    .card-details {
+        @apply w-full px-6 py-1;
+    }
+
+    .card-info {
+        @apply my-3
+    }
+
+    .card-title {
+        @apply font-light text-[16px];
+    }
+
+    .card-subtitle {
+        @apply font-medium text-[30px];
+    }
+
+    .card-button {
+        @apply w-[135px] self-end h-[34px] rounded-r-md drop-shadow cursor-pointer transition-all duration-300 flex items-center justify-center;
+    }
+
+    .card-button.verified {
+        @apply bg-emerald-400 hover:bg-emerald-600 active:bg-emerald-300;
+    }
+
+    .card-button.not-verified {
+        @apply bg-amber-600 hover:bg-amber-800 active:bg-amber-400;
+    }
+
+    
+}

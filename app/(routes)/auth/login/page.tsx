@@ -23,6 +23,12 @@ const Login = ()=> {
             }
             if (res.status == 200){
                 toast.success('Login Berhasil !')
+                console.log(res.role)
+                if (res.role == 'admin'){
+                    window.location.href = '/admin'
+                } else {
+                    window.location.href = '/'
+                }
             }
             const errMess = {
                 email: res.msg.email ? res.msg.email : [''],

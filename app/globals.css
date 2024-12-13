@@ -2,59 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html  {
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+body,
+html {
+	padding: 0;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+.poppins {
+	font-family: 'Poppins', monospace;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 :root {
-  --background: #03001C;
-  --foreground: #F4EEFF;
+	--background: #03001c;
+	--foreground: #f4eeff;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #03001C;
-    --foreground: #F4EEFF;
-  }
+	:root {
+		--background: #03001c;
+		--foreground: #f4eeff;
+	}
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+	color: var(--foreground);
+	background: var(--background);
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+	.text-balance {
+		text-wrap: balance;
+	}
 }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+	background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background-color: #2483a0;
+	border-radius: 20px;
+	background-color: #2483a0;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #1dcae0;
+	background-color: #1dcae0;
 }
