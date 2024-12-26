@@ -8,7 +8,11 @@ const nextConfig = {
             },
             {
                 protocol: 'http',
-                hostname: '192.168.100.53:9000',
+                hostname: 'localhost:9000',
+            },
+            {
+                protocol: 'http',
+                hostname: 'localhost'
             }
 
         ]

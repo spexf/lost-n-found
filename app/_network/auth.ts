@@ -2,7 +2,6 @@
 import client from "./axiosClient";
 import Cookies from 'js-cookie';
 const {axiosClient} = client
-import { useRouter } from 'next/router';
 
 interface UserData{
     name: string;

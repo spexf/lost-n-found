@@ -23,12 +23,12 @@ const DashboardCards = (props: CardData)=>{
     return (
         <div className="card-container cursor-pointer hover:shadow-slate-800 hover:shadow-lg transition-all duration-300" onClick={()=>redirect(props.itemId)}>
             <div className="card-image">
-                <img className='card-image' src={`http://192.168.100.53:9000/images/${props.itemType}/${props.imgSrc}`} alt="image" />
+                <img className='card-image' src={`http://localhost:9000/images/${props.itemType}/${props.imgSrc}`} alt="image" />
             </div>
             <div className="card-details">
                 <div className="card-info">
                     <div className="card-title">
-                        {props.itemType == 'lost' ? 'item found at' : 'item lost in'}
+                        {props.itemType == 'lost' ? 'item lost in' : 'item found at'}
                     </div>
                     <div className="card-subtitle">
                         {props.itemLocation}
@@ -43,8 +43,8 @@ const DashboardCards = (props: CardData)=>{
                     </div>
                 </div>
             </div>
-            <div className={`card-button ${props.itemStatus == 'verified' ? 'verified' : 'not-verified'}`} >
-                {props.itemStatus == 'verified' ? 'Verified' : 'Not Verified'}
+            <div className={`card-button ${props.itemStatus == '1' ? 'verified' : 'not-verified'}`} >
+                {props.itemStatus == '1' ? 'Verified' : 'Not Verified'}
             </div>
         </div>
     )

@@ -22,7 +22,7 @@ const Card = (props: Card) => {
                     {props.type}
                 </div>
                 <div className="card-url">
-                    <a href={`${props.type}/${props.id}`}>click for more</a>
+                    <a href={`/my-uploads/${props.id}`}>click for more</a>
                 </div>
             </div>
         </div>

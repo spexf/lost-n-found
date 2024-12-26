@@ -2,7 +2,7 @@
 import AddData from '@/app/_components/addDataComponents/AddData';
 import Navbar from '@/app/_components/navbarComponents/Navbar';
 import './style.css'
-import Card from '@/app/_components/cardComponents/Card';
+import Card from '@/app/_components/myUploadCardComponents/Card';
 import { useState, useEffect } from 'react';
 import authLib from '@/app/_network/_authApi/userApi';
 import { FourSquare } from 'react-loading-indicators';

@@ -7,13 +7,15 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
 
   // Tentukan halaman yang tidak memerlukan autentikasi (misalnya login dan register)
-  const publicPaths = ['/auth/login', '/auth/register', '/home'];
+  const publicPaths = ['/auth/login', '/auth/register'];
   const url = request.nextUrl.clone();
-
+  if (url.pathname == '/') {
+    return NextResponse.next();
+  }
   // Bypass middleware jika pengguna mengakses halaman publik
   if (publicPaths.some((path) => url.pathname.startsWith(path))) {
     if (token){
-      url.pathname = '/'
+      url.pathname = '/lost'
       return NextResponse.redirect(url)
     }
     return NextResponse.next();

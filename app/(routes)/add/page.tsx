@@ -7,12 +7,12 @@ import './style.css';
 import { useRouter } from 'next/router';
 
 const Add = () => {
-    const router = useRouter;
     const [isFile, setIsFile] = useState(false);
     const [imagePreview, setImagePreview] = useState<string>('');
     const [data, setData] = useState({
+        item: '',
         location: '',
-        type: '',
+        type: 'lost',
         description: ''
     });
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -40,6 +40,7 @@ const Add = () => {
         }
 
         const formData = new FormData();
+        formData.append('item', data.item);
         formData.append('location', data.location);
         formData.append('type', data.type);
         formData.append('description', data.description);
@@ -81,6 +82,23 @@ const Add = () => {
                     </label>
                 )}
 
+                <div className="flex-col flex items-center justify-center">
+                    <input
+                    className="inputText"
+                    type="text"
+                    value={data.item}
+                    onChange={(e) =>
+                        setData((d) => ({
+                            ...d,
+                            item: e.target.value
+                        }))
+                    }
+                    max={25}
+                    id="items"
+                    placeholder="what kind of item?"
+                />
+
+                <h4 className="self-start font-medium text-[20px]" style={{ fontFamily: "'Poppins',monospace" }}>Details</h4>
                 <input
                     className="inputText"
                     type="text"
@@ -94,6 +112,8 @@ const Add = () => {
                     id="location"
                     placeholder="founded / lost location"
                 />
+                </div>
+                
 
                 <div className="selectContainer">
                     <select
@@ -105,7 +125,8 @@ const Add = () => {
                                 type: e.target.value
                             }))
                         }
-                        defaultValue={data.type}
+                        defaultValue={'lost'}
+                        value={data.type}
                         id="type"
                     >
                         <option value="lost">lost</option>
@@ -116,7 +137,7 @@ const Add = () => {
                 <textarea
                     name="description"
                     value={data.description}
-                    placeholder="details"
+                    placeholder="more details"
                     onChange={(e) =>
                         setData((d) => ({
                             ...d,

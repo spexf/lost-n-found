@@ -11,6 +11,7 @@ const Login = ()=> {
     const [userData, setUserData] = useState({
         name:'',
         email:'',
+        contact: '',
         password: ''
     })
     const handleRegister = async ()=>{
@@ -24,7 +25,8 @@ const Login = ()=> {
             const errMess = {
                 name: res.msg.name ? res.msg.name : [''],
                 email: res.msg.email ? res.msg.email : [''],
-                password: res.msg.password ? res.msg.password : ['']
+                password: res.msg.password ? res.msg.password : [''],
+                contact: res.msg.contact ? res.msg.contact : [''],
             }
             displayErrors(errMess)
         } catch (error){
@@ -65,6 +67,16 @@ const Login = ()=> {
                         id="name"
                         value={userData.name}
                         placeholder="name"
+                    />
+                </div>
+                <div className="input-email">
+                    <input
+                        onChange={(e) => setUserData((old) => ({ ...old, contact: e.target.value }))}
+                        className="inputText"
+                        type="text"
+                        id="contact"
+                        value={userData.contact}
+                        placeholder="contact"
                     />
                 </div>
                 <div className="input-email">

@@ -21,6 +21,9 @@ const Login = ()=> {
             if (res.status == 401 ){
                 toast.error(`${res.msg.message}`)
             }
+            if(res.status == 403) {
+                toast.error('This Account Has Been Banned')
+            }
             if (res.status == 200){
                 toast.success('Login Berhasil !')
                 console.log(res.role)

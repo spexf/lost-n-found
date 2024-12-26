@@ -1,6 +1,42 @@
+'use client'
 import Sidebar from "@/app/_components/adminComponents/Sidebar/page"
-
+import authLib from "@/app/_network/_authApi/userApi"
+import { useEffect, useState } from "react"
+import { FourSquare } from "react-loading-indicators"
+import adminApi from "@/app/_network/_authApi/adminApi"
+import { useRouter } from "next/router"
 const Page = ({params}: {params: {id: number}})=>{
+    const router = useRouter
+    const [isLoading, setIsLoading] = useState(true)
+    const [data, setData] = useState({})
+    const verify = async (id: number) => {
+        try {
+            const res = await adminApi.verifyItem(id)
+            window.location.href = '/admin/items'
+        } catch (e){
+            console.log(e)
+        }
+    }
+    const reject = async (id: number) => {
+        try {
+            const res = await adminApi.cancelItem(id)
+            window.location.href = '/admin/items'
+        } catch (e){
+            console.log(e)
+        }
+    }
+    const getData = async (id: number) =>{
+        try {
+            const res = await authLib.getItem(id)
+            setData(res)
+            setIsLoading(false)
+        } catch (e){
+            console.log(e)
+        }
+    }
+    useEffect(()=>{
+        getData(params.id)
+    },[])
     console.log(params.id)
 
     return (
@@ -12,17 +48,20 @@ const Page = ({params}: {params: {id: number}})=>{
 
       {/* Main Content */}
       <div className="ml-80 z-20 w-[1100px] self-center right-10 h-fit">
+        {isLoading ? <div className="flex items-center justify-center h-screen">
+            <FourSquare color="#16e5e8" size="medium" text="" textColor="" />
+        </div> : 
         <div className="relative flex-col poppins h-[700px] ml-[85px] px-8 py-4 flex w-full bg-[#2D237A] rounded-[10px]">
-            <img src={'http://192.168.100.53:9000/images/lost/1733755094.png'} alt="itemImages" className="w-[500px] h-fit self-center rounded-lg shadow-md" />
+            <img src={`http://localhost:9000/images/${data.type}/${data.image}`} alt="itemImages" className="w-fit h-[250px] self-center rounded-lg shadow-md" />
             <div className="data flex w-full h-fit my-8">
                 <div className="item-data flex-col">
                     <div className="location font-medium text-[25px]">
-                        Item lost in 
+                        {data.item} {data.type == 'lost' ? 'lost in' : 'found at'} 
                         <br />
-                        - xxx
+                        {data.location}
                     </div>
                     <div className="description">
-                        <textarea name="description" className="w-[450px] bg-[#1A134E] rounded-lg px-2 py-2 h-[280px] " defaultValue={'Lorem ipsum, dolor sit amet consectetur adipisicing elit. At sint, illum eligendi minima ipsam, dignissimos laudantium saepe fugiat in quo vitae quod tempora? Est commodi fugit necessitatibus quae fugiat nobis sunt facere tempore explicabo, corrupti eum mollitia accusantium nisi itaque pariatur tempora doloribus porro! Perspiciatis, dignissimos tenetur? Fugit perferendis provident minima in consectetur, recusandae maiores harum, inventore asperiores libero suscipit? Illum dolor, eaque quia unde vel tempora assumenda. Eveniet quia, magnam velit illo, ab dolorum nihil sed excepturi blanditiis ad explicabo voluptates error dolore nostrum quam ratione qui doloremque unde? Nisi, maiores. Reprehenderit laudantium rem mollitia, molestias blanditiis consequatur delectus dolor ipsam recusandae soluta. Similique, error. Ab repellat expedita necessitatibus minus? Ab at neque nemo nostrum dolorem. Facilis inventore consequuntur doloremque, quo fugiat sunt! Quibusdam aliquam facilis tempora voluptatum voluptates earum. Quam pariatur modi officia commodi ea explicabo alias excepturi cum, libero eum quos non soluta minima magnam vero culpa, deserunt voluptate fugit delectus provident? Exercitationem nemo architecto, tempore laborum placeat in voluptates voluptatem. Impedit ad aspernatur aperiam sapiente incidunt laborum voluptatibus repudiandae explicabo quia natus molestias esse quibusdam repellendus, sint facere deleniti, voluptatem non quae ut odit doloremque, adipisci nam nihil placeat. Sequi nihil expedita exercitationem numquam doloremque?'} readOnly id="description">
+                        <textarea  name="description" className="w-[450px] bg-[#1A134E] rounded-lg px-2 py-2 h-[280px] " defaultValue={data.description} readOnly id="description">
                             
                         </textarea>
                     </div>
@@ -31,27 +70,30 @@ const Page = ({params}: {params: {id: number}})=>{
                     <div className="sender-name text-[20px]">
                         <tr>
                             <td className="w-[150px]">Sender</td>
-                            <td>: Udin</td>
+                            <td>: {data.submited_by.name}</td>
                         </tr>
                     </div>
                     <div className="sender-contact text-[20px]">
                         <tr>
                             <td className="w-[150px]">Email</td>
-                            <td>: udin@students.polibatam.ac.id</td>
+                            <td>: {data.submited_by.email}</td>
                         </tr>
                         <tr>
                             <td className="w-[150px]">Phone</td>
-                            <td>: 081231939123</td>
+                            <td>: {data.submited_by.contact}</td>
                         </tr>
                     </div>
                     <div className="action flex justify-end  w-full">
-                        <div className="button-verify w-fit rounded-md cursor-pointer transition-all duration-200 active:bg-emerald-500 hover:bg-emerald-700 px-4 py-2 h-fit text-[20px] mx-3 self-end bg-emerald-600">Verify</div>
-                        <div className="button-reject w-fit rounded-md cursor-pointer transition-all duration-200 active:bg-rose-500 hover:bg-rose-800 px-4 py-2 h-fit text-[20px] mx-3 self-end bg-rose-700">Reject</div>
+                        {
+                            data.verified == 1 ? <div onClick={()=>reject(params.id)}className="button-reject w-fit rounded-md cursor-pointer transition-all duration-200 active:bg-rose-500 hover:bg-rose-800 px-4 py-2 h-fit text-[20px] mx-3 self-end bg-rose-700">Cancel Verification</div>
+                            : <div onClick={()=>verify(params.id)} className="button-verify w-fit rounded-md cursor-pointer transition-all duration-200 active:bg-emerald-500 hover:bg-emerald-700 px-4 py-2 h-fit text-[20px] mx-3 self-end bg-emerald-600">Verify</div>
+                        }
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>}
+        
       </div>
     </div>
     )

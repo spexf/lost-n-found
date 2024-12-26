@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { useState } from 'react';
+import Cookies from 'js-cookie';
 import './style.css'
 
 interface Routes {
@@ -11,6 +12,7 @@ interface Routes {
 }
 
 const Navbar = () => {
+    const token = Cookies.get('token')
     const [navTrigger , setNavTrigger] = useState(false)
     const pathname: string = usePathname()    
     const routes: Array<Routes> = [
@@ -46,13 +48,14 @@ const Navbar = () => {
 
     return ( 
         <nav className={`navbar ${navTrigger ? 'active' : ''}`}>
-            <div className={`current-page ${navTrigger ? 'active' : 'deactive'}`}>{currentPath} 
+            {token == undefined ? <div><a className='hover:text-cyan-500 transition-all duration-200' href="/auth/login">Login</a> / <a className='hover:text-cyan-500 transition-all duration-200' href="/auth/register">Register</a></div> : <div className={`current-page ${navTrigger ? 'active' : 'deactive'}`}>
+                <p>{currentPath}</p>    
                 <div className="trigger" onClick={()=>setNavTrigger((old)=> !old)}>
                     <div className={`layer-1 ${navTrigger ? 'active' : ''}`}></div>
                     <div className={`layer-2 ${navTrigger ? 'active' : ''}`}></div>
                     <div className={`layer-3 ${navTrigger ? 'active' : ''}`}></div>
                 </div>
-            </div>
+            </div>}
             <div className={`navigation  ${navTrigger ? 'active' : 'sm:opacity-0'}`}>
                 {
                     routes.map((n) => <a className={`mx-5 my-3 ${n.name == currentPath ? 'hidden' : ''}`} id={`navigation-${n.id}`} key={n.id} href={n.path}> {n.name} </a>)

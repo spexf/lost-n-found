@@ -3,12 +3,16 @@ import Sidebar from "@/app/_components/adminComponents/Sidebar/page";
 import DashboardCards from "@/app/_components/dashboardCardItem/page";
 import adminApi from "@/app/_network/_authApi/adminApi";
 import { useEffect, useState } from "react";
+import { FourSquare } from "react-loading-indicators";
 const ItemsPage = () => {
+
+  const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
   const getItems = async () => {
     try {
       const res = await adminApi.getItem(); 
       setItems(res.data); 
+      setIsLoading(false);
       console.log(items)
 
     } catch (error) {
@@ -28,7 +32,7 @@ const ItemsPage = () => {
 
       {/* Main Content */}
       <div className="ml-80 w-[1180px] h-fit">
-        <div className="poppins h-[150px] ml-[30px] px-8 py-4 flex w-full bg-[#2D237A] rounded-b-[20px]">
+        <div className={`${isLoading ? 'hidden' : 'poppins h-[150px] ml-[30px] px-8 py-4 flex w-full bg-[#2D237A] rounded-b-[20px]'}`}>
           <select className="w-[350px] h-[60px] mx-8 my-6 px-4 rounded-lg bg-[#1A134E] " name="status" id="status">
             <option value="-" disabled selected > SELECT STATUS</option>
             <option value="verified">Verified</option>
@@ -43,22 +47,25 @@ const ItemsPage = () => {
             Filter
           </div>
         </div>
-        <div className="item-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 w-[1180px] h-fit pl-20 py-8">
-        {items.length === 0 ? (
+        <div className={`${isLoading ? 'flex items-center justify-center self-center justify-self-center h-screen' : 'item-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 w-[1180px] h-fit pl-20 py-8'}`}>
+        
+        {isLoading ? (<FourSquare color="#16e5e8" size="medium" text="" textColor="" />) : (
+          
+          items.length === 0 ? (
             <p>No items available</p> // Fallback message when no items are loaded
           ) : (
             items.map((item, index) => (
               <DashboardCards
                 key={index} // Add a unique key for each item
                 itemId={item.id} // Assuming item has an `id` field
-                itemStatus={item.status} // Assuming item has a `status` field
+                itemStatus={item.verified} // Assuming item has a `status` field
                 imgSrc={item.image} // Assuming item has an `image` field
                 itemLocation={item.location} // Assuming item has a `location` field
                 itemType={item.type} // Assuming item has a `type` field
                 userName={item.submited_by.name} // Assuming item has a `userName` field
               />
             ))
-          )}
+          ))}
       </div>
       </div>
     </div>
