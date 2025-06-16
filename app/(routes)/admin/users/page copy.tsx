@@ -12,6 +12,7 @@ const UsersPage = ()=>{
         try {
             const res = await adminApi.getUser();
             setData(res.data.data)
+            console.log(data)
             setIsLoading(false)
         } catch (e) {
             return e;
@@ -41,7 +42,7 @@ const UsersPage = ()=>{
                             name={dt.name}
                             email={dt.email}
                             contact={dt.contact}
-                            role={dt.roles[0].name}
+                            role={dt.roles}
                         />
                     ))
                     ))}

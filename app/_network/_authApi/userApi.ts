@@ -14,10 +14,10 @@ const getAllItems = async (type: string) => {
         return e
     }
 }
-const getMyItem = async (type: string) => {
+const getMyItem = async () => {
     try {
         const res = await axiosClient.get(`/items/myUpload`)
-        return res.data.data
+        return res
     } catch (e) {
         console.log(e)
         return e
@@ -37,7 +37,7 @@ const getItem = async(id: number) => {
 const submitForm = async (data: FormData) => {
     console.log('gambar:',data.get('image'))
     try {
-        const res = await axios.post('http://localhost:9000/api/items/create', data, {
+        const res = await axios.post('https://api.lostnfound-rks301.com/api/items/create', data, {
             headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
                 'Content-Type': 'multipart-form/data',
@@ -53,7 +53,7 @@ const submitForm = async (data: FormData) => {
 }
 const submitTransaction = async (data: FormData) => {
     try {
-        const res = await axios.post('http://localhost:9000/api/transaction/create', data, {
+        const res = await axios.post('https://api.lostnfound-rks301.com/api/transaction/create', data, {
             headers: {
                 Authorization: `Bearer ${Cookies.get('token')}`,
                 'Content-Type': 'multipart-form/data',
@@ -87,13 +87,14 @@ const editForm = async () =>{
 
 
 const authLib = {
+    getMyItem,
     submitTransaction,
     submitForm,
     deleteForm,
     editForm,
     getAllItems,
     getItem,
-    getFinishedItem
+    getFinishedItem,
 };
 
 export default authLib;

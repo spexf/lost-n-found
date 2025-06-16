@@ -11,8 +11,8 @@ const nextConfig = {
                 hostname: 'localhost:9000',
             },
             {
-                protocol: 'http',
-                hostname: 'localhost'
+                protocol: 'https',
+                hostname: 'api.lostnfound-rks301.com'
             }
 
         ]

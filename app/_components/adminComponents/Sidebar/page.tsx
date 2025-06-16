@@ -26,7 +26,8 @@ const Sidebar = ()=>{
             <div className="navigation">
                 <a href="/admin/users" className={`navi-item ${pathname == '/admin/users' ? 'text-[#8576FF]' : ''}`}>Users</a>
                 <a href="/admin/items" className={`navi-item ${pathname == '/admin/items' ? 'text-[#8576FF]' : ''}`}>Items</a>
-                <a href="/admin/transaction" className={`navi-item ${pathname == '/admin/transaction' ? 'text-[#8576FF]' : ''}`}>Transaction</a>
+                <a href="/admin/transactions" className={`navi-item ${pathname == '/admin/transactions' ? 'text-[#8576FF]' : ''}`}>Transaction</a>
+                <a href="/admin/roles" className={`navi-item ${pathname == '/admin/roles' ? 'text-[#8576FF]' : ''}`}>Roles</a>
             </div>
             <div onClick={logout} className="logout">
                 Logout

@@ -31,7 +31,7 @@ const Page = ({params}: {params: {id: number}}) => {
             <Navbar/>
             <div className="form">
                 <label htmlFor="" className="photo-uploads">
-                    <img src={`http://localhost:9000/images/${data.type}/${data.image}`} alt="itemImages" className="w-fit h-[300px]" />
+                    <img src={`https://api.lostnfound-rks301.com/images/${data.type}/${data.image}`} alt="itemImages" className="w-fit h-[300px]" />
                 </label>
                 <div className="flex-col flex items-center justify-center">
                     <input

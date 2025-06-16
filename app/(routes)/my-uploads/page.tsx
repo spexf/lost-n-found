@@ -11,8 +11,8 @@ const Lost = () => {
     const [data, setData] = useState([])
     const getItems = async () => {
         try {
-            const res = await authLib.getAllItems('lost'); 
-            setData(res); 
+            const res = await authLib.getMyItem(); 
+            setData(res.data.data); 
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching items:', error);

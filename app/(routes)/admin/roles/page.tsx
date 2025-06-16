@@ -1,6 +1,6 @@
 'use client'
 import Sidebar from "@/app/_components/adminComponents/Sidebar/page";
-import DashboardCards from "@/app/_components/dashboardCardUser/page";
+import DashboardCards from "@/app/_components/dashboardCardRole/page";
 import { useEffect, useState } from "react";
 import adminApi from "@/app/_network/_authApi/adminApi";
 import { FourSquare } from "react-loading-indicators";
@@ -10,8 +10,8 @@ const UsersPage = ()=>{
     const [data, setData] = useState([])
     const getData = async ()=>{
         try {
-            const res = await adminApi.getUser();
-            setData(res.data.data)
+            const res = await adminApi.getRoles();
+            setData(res.data)
             setIsLoading(false)
         } catch (e) {
             return e;
@@ -39,9 +39,9 @@ const UsersPage = ()=>{
                             key={index} // Add a unique key for each item
                             id={dt.id}
                             name={dt.name}
-                            email={dt.email}
-                            contact={dt.contact}
-                            role={dt.roles[0].name}
+                            guardName={dt.guard_name}
+                            userCount={dt.user_count}
+                        
                         />
                     ))
                     ))}

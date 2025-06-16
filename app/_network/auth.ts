@@ -21,7 +21,6 @@ const authLogin = async (data: UserLogin)=>{
         axiosClient.defaults.headers.common['Authorization'] = `Bearer ${res.data.user.token}`
         const role = await axiosClient.post('/auth/validate')        
         Cookies.set('token', res.data.user.token, {
-            secure: true,
             sameSite: 'strict'
         })
         return {data: 'Login Success', status: res.status, role: role.data.name}

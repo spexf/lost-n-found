@@ -5,7 +5,7 @@
 @layer base {
 	.card-container {
 		font-family: "Poppins", monospace;
-		@apply bg-[#1A134E] w-[328px] h-[550px] flex-col relative drop-shadow rounded-[5px];
+		@apply bg-[#1A134E] w-[328px] h-[430px] flex-col relative drop-shadow rounded-[5px];
 	}
 }
 
@@ -31,7 +31,7 @@
 	}
 
 	.card-button {
-		@apply w-[135px] self-end h-[34px] rounded-r-md drop-shadow cursor-pointer transition-all duration-300 flex items-center justify-center;
+		@apply w-[175px] self-end h-[34px] rounded-r-md drop-shadow cursor-pointer transition-all duration-300 flex items-center justify-center;
 	}
 
 	.card-button.verified {

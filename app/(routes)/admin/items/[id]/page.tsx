@@ -52,7 +52,7 @@ const Page = ({params}: {params: {id: number}})=>{
             <FourSquare color="#16e5e8" size="medium" text="" textColor="" />
         </div> : 
         <div className="relative flex-col poppins h-[700px] ml-[85px] px-8 py-4 flex w-full bg-[#2D237A] rounded-[10px]">
-            <img src={`http://localhost:9000/images/${data.type}/${data.image}`} alt="itemImages" className="w-fit h-[250px] self-center rounded-lg shadow-md" />
+            <img src={`https://api.lostnfound-rks301.com/images/${data.type}/${data.image}`} alt="itemImages" className="w-fit h-[250px] self-center rounded-lg shadow-md" />
             <div className="data flex w-full h-fit my-8">
                 <div className="item-data flex-col">
                     <div className="location font-medium text-[25px]">

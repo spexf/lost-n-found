@@ -63,7 +63,59 @@ const unBanUser = async (id:number) => {
         return error
     }
 }
+const getTransactionDetails = async (id:number) => {
+    try {
+        const res = await axiosClient.get(`/admin/transactions/${id}`)
+        return res.data
+    } catch (error) {
+        return error
+    }
+}
 
+const getTransaction = async () => {
+    try {
+        const res = await axiosClient.get('/admin/transactions')
+        return res
+    } catch (error) {
+        return error
+    }
+}
+
+const getRoles = async () => { 
+    try {
+        const res = await axiosClient.get('/admin/roles');
+        return res;
+    } catch (error) {
+        return error;
+    }
+};
+
+const createRole = async (roleData: {name: string, guard_name: string}) => {
+    try {
+        const res = await axiosClient.post('/admin/roles', roleData);
+        return res;
+    } catch (error) {
+        return error;
+    }
+};
+
+const updateRole = async (roleId: number, roleData: {name: string, guard_name: string}) => {
+    try {
+        const res = await axiosClient.put(`/admin/roles/${roleId}`, roleData);
+        return res;
+    } catch (error) {
+        return error;
+    }
+};
+
+const deleteRole = async (roleId: number) => {
+    try {
+        const res = await axiosClient.delete(`/admin/roles/${roleId}`);
+        return res;
+    } catch (error) {
+        return error;
+    }
+};
 
 
 const adminApi = {
@@ -72,7 +124,13 @@ const adminApi = {
     cancelItem,
     getUser,
     unBanUser,
-    banUser
+    banUser,
+    getTransaction,
+    getTransactionDetails,
+    getRoles,
+    createRole,
+    updateRole,
+    deleteRole
 };
 
 export default adminApi;

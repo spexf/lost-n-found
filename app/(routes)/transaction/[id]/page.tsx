@@ -1,14 +1,23 @@
 'use client';
 import React, { useState, ChangeEvent } from 'react';
 import authLib from '@/app/_network/_authApi/userApi';
+import { toast } from 'react-toastify';
+
 export default function FormPenerimaanBarang({params}: {params: {id: number}}) {
     const [imagePreviewChat, setImagePreviewChat] = useState<string>('');
     const [imagePreviewPemindahan, setImagePreviewPemindahan] = useState<string>('');
-    const [idPenerima, setIdPenerima] = useState('');
+    const [emailPenerima, setEmailPenerima] = useState('');
     const [lokasiPemindahan, setLokasiPemindahan] = useState('');
     const [fileChat, setFileChat] = useState<File | null>(null);
     const [filePemindahan, setFilePemindahan] = useState<File | null>(null);
-
+    const customStyle: object = {
+        backgroundColor: '#ff4d4d', // Red background for error
+        color: 'white',
+        fontSize: '16px',
+        borderRadius: '5px',
+        padding: '10px 20px',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    };
     const handleFileChange = (
         event: ChangeEvent<HTMLInputElement>,
         setImagePreview: React.Dispatch<React.SetStateAction<string>>,
@@ -29,12 +38,15 @@ export default function FormPenerimaanBarang({params}: {params: {id: number}}) {
         e.preventDefault();
 
         if (!fileChat || !filePemindahan) {
-            console.log('Please upload all required images.');
+            console.log('');
+            toast('Please upload all required images!', {
+                style: customStyle
+            })
             return;
         }
 
         const formData = new FormData();
-        formData.append('user_id', idPenerima);
+        formData.append('email', emailPenerima);
         formData.append('item_id', params.id)
         formData.append('transaction_location', lokasiPemindahan);
         formData.append('chatImage', fileChat);
@@ -45,8 +57,13 @@ export default function FormPenerimaanBarang({params}: {params: {id: number}}) {
             const res = await authLib.submitTransaction(formData);
             console.log(res)
             console.log('Form submitted:', Object.fromEntries(formData));
+            toast('Data submited !')
+            // window.location.href = '/my-uploads'
         } catch (error) {
             console.error('Error submitting form:', error);
+            toast('Error !', {
+                style: customStyle
+            })
         }
     };
 
@@ -57,12 +74,12 @@ export default function FormPenerimaanBarang({params}: {params: {id: number}}) {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* ID Penerima */}
                     <div>
-                        <label htmlFor="id-penerima" className="block text-sm font-medium mb-1" style={{ fontFamily: "Poppins, sans-serif" }}>ID Penerima</label>
+                        <label htmlFor="email-penerima" className="block text-sm font-medium mb-1" style={{ fontFamily: "Poppins, sans-serif" }}> Penerima</label>
                         <input
-                            type="number"
-                            id="id-penerima"
-                            value={idPenerima}
-                            onChange={(e) => setIdPenerima(e.target.value)}
+                            type="text"
+                            id="email-penerima"
+                            value={emailPenerima}
+                            onChange={(e) => setEmailPenerima(e.target.value)}
                             className="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             style={{ fontFamily: "Poppins, sans-serif" }}
                         />

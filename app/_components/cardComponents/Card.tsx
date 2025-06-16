@@ -12,7 +12,7 @@ const Card = (props: Card) => {
     return ( 
         <div className="card" data-aos="fade-right">
             <div className="card-images">
-                <Image layout="fill" className="rounded-[5px]" objectFit="contain" src={`http://localhost:9000/images/${props.type}/${props.url}`} alt="item-image"/>
+                <Image layout="fill" className="rounded-[5px]" objectFit="contain" src={`https://api.lostnfound-rks301.com/images/${props.type}/${props.url}`} alt="item-image"/>
             </div>
             <div className="card-body">
                 <div className="card-text">
